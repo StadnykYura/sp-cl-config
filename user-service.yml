@@ -9,7 +9,7 @@ spring:
   data:
     mongodb:
       database: mongo_docker_poc_users
-      port: 27016
+      port: 27017
 
 hystrix:
   command:
@@ -51,7 +51,7 @@ spring:
     mongodb:
       database: mongo_docker_poc_users
       host: mongo
-      port: 27017
+      port: 27015
 
 server:
   port: 8081
