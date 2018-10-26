@@ -6,7 +6,7 @@ spring:
   data:
     mongodb:
       database: mongo_docker_poc_users
-      port: 27016
+      port: 27017
 
 hystrix:
   command:
@@ -37,7 +37,7 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 server:
-  port: 8083
+  port: 8081
 
 ---
 spring:
@@ -48,10 +48,10 @@ spring:
     mongodb:
       database: mongo_docker_poc_users
       host: mongo
-      port: 27015
+      port: 27017
 
 server:
-  port: 8082
+  port: 8081
 
 hystrix:
   command:
