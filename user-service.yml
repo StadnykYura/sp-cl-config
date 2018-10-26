@@ -1,0 +1,85 @@
+spring:
+  profiles:
+    active: default
+---
+spring:
+  profiles: default
+  application:
+      name: user-service
+  data:
+    mongodb:
+      database: mongo_docker_poc_users
+      port: 27017
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout: enabled
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 1000
+            interruptOnTimeout: true
+            interruptOnCancel: true
+      fallback:
+        enabled: true
+      circuitBreaker:
+        enabled: true
+        requestVolumeThreshold: 5
+        sleepWindowInMilliseconds: 2000
+        errorThresholdPercentage: 20
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8081
+
+---
+spring:
+  profiles: docker
+  application:
+    name: user-service
+  data:
+    mongodb:
+      database: mongo_docker_poc_users
+      host: mongo
+      port: 27015
+
+server:
+  port: 8082
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout: enabled
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 1000
+            interruptOnTimeout: true
+            interruptOnCancel: true
+      fallback:
+        enabled: true
+      circuitBreaker:
+        enabled: true
+        requestVolumeThreshold: 5
+        sleepWindowInMilliseconds: 2000
+        errorThresholdPercentage: 20
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://discovery-service:8761/eureka/
