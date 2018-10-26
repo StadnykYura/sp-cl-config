@@ -9,7 +9,7 @@ spring:
   data:
     mongodb:
       database: mongo_docker_poc_users
-      port: 27017
+      port: 27016
 
 hystrix:
   command:
